@@ -4,6 +4,7 @@ Will repost all currently active ads on a Kijiji Profile
 
 from selenium import webdriver
 from time import sleep
+from AdProfile import *
 
 class KijijiReposter:
 	def __init__(self, username, password):
@@ -23,6 +24,8 @@ class KijijiReposter:
 			item.find_element_by_xpath('//div[2]/div/div[1]/a').click()
 			#self.clickButton(item);
 			self.driver.execute_script("window.history.go(-1)")
+			# Go through each ad and scrape title and description
+			# ad = AdProfile(title, description)
 
 	def openBrowser(self):
 		self.driver = webdriver.Chrome()
@@ -30,7 +33,7 @@ class KijijiReposter:
 
 
 	def signIn(self, username, password):
-		self.clickButton('//*[@id="MainContainer"]/div[1]/div/header/div[3]/div/div[3]/div/div/div/a[2]')
+		self.clickButton('//*[@id="MainContainer"]/div[1]/div/div[2]/div/header/div[3]/div/div[3]/div/div/div/a[2]')
 		self.enterText('//*[@id="LoginEmailOrNickname"]', username);
 		self.enterText('//*[@id="login-password"]', password);
 		self.clickButton('//*[@id="SignInButton"]')
