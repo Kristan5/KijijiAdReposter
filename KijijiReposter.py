@@ -18,14 +18,35 @@ class KijijiReposter:
 		self.clickButton('//*[@id="MainContainer"]/div[1]/div/header/div[3]/div/div[3]/div/div[4]/div/div/ul/a[1]/li')
 		sleep(1)
 
-		# loop through each ad on profile
+		# Array of all the user's currently posted ads
+		adArray = 0
+		# loop through each ad on profile, 
 		items = self.driver.find_elements_by_class_name('item-1723786765')
 		for item in items:
 			item.find_element_by_xpath('//div[2]/div/div[1]/a').click()
 			#self.clickButton(item);
-			self.driver.execute_script("window.history.go(-1)")
+			
+			# Get the ad's title
+			# title = 
+
+			# Get the ad's description
+			# description = 
+
 			# Go through each ad and scrape title and description
 			# ad = AdProfile(title, description)
+
+			# adArray.append(ad)
+			# Go back 
+			self.driver.execute_script("window.history.go(-1)")
+
+		# Posts each of the ads stored in the array
+		for ad in adArray:
+			# Go through array of all the user's ad and post them 
+			title = ad.title
+			description = ad.description
+			
+			break 
+
 
 	def openBrowser(self):
 		self.driver = webdriver.Chrome()
@@ -34,9 +55,9 @@ class KijijiReposter:
 
 	def signIn(self, username, password):
 		self.clickButton('//*[@id="MainContainer"]/div[1]/div/div[2]/div/header/div[3]/div/div[3]/div/div/div/a[2]')
-		self.enterText('//*[@id="LoginEmailOrNickname"]', username);
-		self.enterText('//*[@id="login-password"]', password);
-		self.clickButton('//*[@id="SignInButton"]')
+		self.enterText('//*[@id="emailOrNickname"]', username);
+		self.enterText('//*[@id="password"]', password);
+		self.clickButton('//*[@id="mainPageContent"]/div/div/div/div/form/button')
 
 
 	def clickButton(self, XPath):
